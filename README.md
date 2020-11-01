@@ -5,7 +5,10 @@ Oct 26th, 2020
 Exploring US Bikeshare Data
 
 ### Description
-After providing a few inputs, the user will be able to filter through US bikeshare data and get interesting information on travel time stats, popular stations, and user types, gender and year of birth.
+Explore US Bikeshare travel time stats, popular stations and user data by providing a few filter inputs such as:
+* City
+* Month
+* Day of the Week.
 
 ### Files used
 bikeshare.py
