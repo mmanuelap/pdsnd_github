@@ -8,9 +8,9 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-city_names = ['chicago', 'new york city', 'washington']
-month_names = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
-day_names = ['all', 'sunday', 'monday', 'tuesday',
+city_options = ['chicago', 'new york city', 'washington']
+month_options = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
+day_options = ['all', 'sunday', 'monday', 'tuesday',
              'wednesday', 'thrusday', 'friday', 'saturday']
 
 def get_filters():
@@ -26,33 +26,33 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     try:
         city = input('Which city should we begin with? Chicago, New York City, or Washington?\n').lower()
-        while city not in city_names:
+        while city not in city_options:
             print('That\'s not a valid city!\n')
             city = input('Type \"Chicago\", \"New York\", or \"Washington\": ').lower()
         print('You selected', city.title(),', thank you!\n')
     except e:
         print('The exception \"{}\" occurred'.format(e))
-        
+
     # TO DO: get user input for month (all, january, february, ... , june)
     try:
         month = input('What about a timeframe? You can filter by a month (January to June) or type \"all\" to see everything: \n').lower()
-        while month not in month_names:
+        while month not in month_options:
             print('That\'s not a valid filter!\n')
             month = input('Type a month from January to June, or \"all\" to see the data unfiltered: \n').lower()
         print('You selected', month.title(),', thank you!')
     except e:
         print('The exception \"{}\" occurred'.format(e))
-            
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     try:
         day = input('\nLastly, you can filter by day of the week (e.g. Sunday), or type \"all\" to see everything: \n').lower()
-        while day not in day_names:
+        while day not in day_options:
             print('That\'s not a valid filter!\n')
             day = input('Type a day of the week or type \"all\" to see the data unfiltered: \n').lower()
         print('You selected ', day.title(),', thank you!')
     except e:
         print('The exception \"{}\" occurred'.format(e))
-            
+
     print('-'*40)
     return city, month, day
 
@@ -99,15 +99,15 @@ def time_stats(df):
     # TO DO: display the most common month
     common_month = df['month'].mode()[0]
     common_month = calendar.month_name[common_month]
-    print('Most Frequent Month: ', common_month)
+    print('The Most Frequent Month is ', common_month)
 
     # TO DO: display the most common day of week
     common_weekday = df['day_of_week'].mode()[0]
-    print('Most Frequent Day of Week: ', common_weekday)
+    print('The Most Frequent Day of Week is ', common_weekday)
 
     # TO DO: display the most common start hour
     popular_hour = df['hour'].mode()[0]
-    print('Most Frequent Start Hour: ', popular_hour)
+    print('The Most Frequent Start Hour is ', popular_hour)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -118,18 +118,18 @@ def station_stats(df):
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
-    
+
     # TO DO: display most commonly used start station
     common_start_station = df['Start Station'].mode()[0]
-    print("Most Popular Start Station: ", common_start_station)
+    print('The Most Popular Start Station is ', common_start_station)
 
     # TO DO: display most commonly used end station
     common_end_station = df['End Station'].mode()[0]
-    print("\nMost Popular End Station: ", common_end_station)
+    print('\nThe Most Popular End Station is', common_end_station)
 
     # TO DO: display most frequent combination of start station and end station trip
     popular_trip = df.groupby(['Start Station', 'End Station']).size().nlargest(1)
-    print("\nMost Popular Trip: \n{}".format(popular_trip))
+    print('\nThe Most Popular Trip is \n{}'.format(popular_trip))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -143,12 +143,12 @@ def trip_duration_stats(df):
 
     # TO DO: display total travel time
     total_travel_time = int(df['Trip Duration'].sum() / 60 / 60 / 24)
-    print('Total Travel Time is {} days.'.format(total_travel_time))
+    print('The Total Travel Time is {} days.'.format(total_travel_time))
 
     # TO DO: display mean travel time
     mean_travel_time = (df['Trip Duration'].mean()) / 60
     mean_travel_time = mean_travel_time.round(2)
-    print('Average travel time is {} minutes.'.format(mean_travel_time))
+    print('The Average travel time is {} minutes.'.format(mean_travel_time))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -162,23 +162,23 @@ def user_stats(df):
     try:
         # TO DO: Display counts of user types
         user_types = df['User Type'].value_counts()
-        print('Users by Type:\n', user_types)
+        print('Number of Users by Type: \n', user_types)
 
         # TO DO: Display counts of gender
         users_by_gender = df['Gender'].value_counts()
         print('\nUsers by Gender:\n', users_by_gender)
-        
+
     # TO DO: Display earliest, most recent, and most common year of birth
         earliest_year = int(df['Birth Year'].min())
         most_recent_year = int(df['Birth Year'].max())
         most_common_year = int(df['Birth Year'].mode()[0])
-        print('\nEarliest Birth Year:', earliest_year)
-        print('\nMost Recent Birth Year:', most_recent_year)
-        print('\nMost Common Birth Year:', most_common_year)
-    
+        print('\nThe Earliest Birth Year is', earliest_year)
+        print('\nThe Most Recent Birth Year is', most_recent_year)
+        print('\nThe Most Common Birth Year is', most_common_year)
+
     except KeyError:
         print('\nNo other data available for the selected city.')
-   
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -209,7 +209,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
         display_raw_data(df)
-        
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
