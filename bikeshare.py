@@ -8,9 +8,9 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-city_names = ['chicago', 'new york city', 'washington']
-month_names = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
-day_names = ['all', 'sunday', 'monday', 'tuesday',
+city_options = ['chicago', 'new york city', 'washington']
+month_options = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
+day_options = ['all', 'sunday', 'monday', 'tuesday',
              'wednesday', 'thrusday', 'friday', 'saturday']
 
 def get_filters():
@@ -26,7 +26,7 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     try:
         city = input('Which city should we begin with? Chicago, New York City, or Washington?\n').lower()
-        while city not in city_names:
+        while city not in city_options:
             print('That\'s not a valid city!\n')
             city = input('Type \"Chicago\", \"New York\", or \"Washington\": ').lower()
         print('You selected', city.title(),', thank you!\n')
@@ -36,7 +36,7 @@ def get_filters():
     # TO DO: get user input for month (all, january, february, ... , june)
     try:
         month = input('What about a timeframe? You can filter by a month (January to June) or type \"all\" to see everything: \n').lower()
-        while month not in month_names:
+        while month not in month_options:
             print('That\'s not a valid filter!\n')
             month = input('Type a month from January to June, or \"all\" to see the data unfiltered: \n').lower()
         print('You selected', month.title(),', thank you!')
@@ -46,7 +46,7 @@ def get_filters():
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     try:
         day = input('\nLastly, you can filter by day of the week (e.g. Sunday), or type \"all\" to see everything: \n').lower()
-        while day not in day_names:
+        while day not in day_options:
             print('That\'s not a valid filter!\n')
             day = input('Type a day of the week or type \"all\" to see the data unfiltered: \n').lower()
         print('You selected ', day.title(),', thank you!')
