@@ -14,3 +14,6 @@ Explore US Bikeshare travel time stats, popular stations and user data by provid
 bikeshare.py
 
 ### Credits
+[Udacity Original Repository](https://github.com/udacity/pdsnd_github)
+[Udacity](https://www.udacity.com/)
+[Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
